@@ -10,29 +10,42 @@ export class Suite implements IRunnable {
 
     constructor(description: string) {
         this.description = description;
+
+        this.setup = [];
+        this.suites = [];
+        this.tests = [];
     }
 
-    public addSetup(setup: () => void): void {
+    public addSetup(setup: () => void): Suite {
         this.setup.push(setup);
+
+        return this;
     }
 
-    public addSuite(suite: Suite): void {
+    public addSuite(suite: Suite): Suite {
         this.suites.push(suite);
+
+        return suite;
     }
 
-    public addTest(description: string, fn: () => void): void {
+    public addTest(description: string, fn: () => void): Suite {
         this.tests.push(new Test(description, fn));
+
+        return this;
     }
 
-    public run(setup: ISetupFunction[] = []): void {
+    public run(setup: ISetupFunction[] = [], description: string[] = []): void {
         setup = setup.concat(this.setup);
 
+        description = description.slice(0);
+        description.push(this.description);
+
         this.tests.forEach((test: Test) => {
-            test.run(setup);
+            test.run(setup, description);
         });
 
         this.suites.forEach((suite: Suite) => {
-            suite.run(setup);
+            suite.run(setup, description);
         });
     }
 }

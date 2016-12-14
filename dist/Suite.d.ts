@@ -7,8 +7,8 @@ export declare class Suite implements IRunnable {
     suites: Suite[];
     tests: Test[];
     constructor(description: string);
-    addSetup(setup: () => void): void;
-    addSuite(suite: Suite): void;
-    addTest(description: string, fn: () => void): void;
-    run(setup?: ISetupFunction[]): void;
+    addSetup(setup: () => void): Suite;
+    addSuite(suite: Suite): Suite;
+    addTest(description: string, fn: () => void): Suite;
+    run(setup?: ISetupFunction[], description?: string[]): void;
 }

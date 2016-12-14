@@ -10,15 +10,18 @@ export class Test implements IRunnable {
         this.fn = fn;
     }
 
-    public run(setup: ISetupFunction[]): void {
+    public run(setup: ISetupFunction[], description: string[] = []): void {
         setup.forEach((fn: () => void) => {
             fn();
         });
 
+        description = description.slice(0);
+        description.push(this.description);
+
         try {
             this.fn();
         } catch (e) {
-            console.error(e);
+            console.error(description.join(' '), e);
         }
     }
 }
