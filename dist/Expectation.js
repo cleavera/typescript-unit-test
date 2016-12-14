@@ -19,9 +19,11 @@ function Expect(value) {
             }
         },
         toEqual: function (comparison) {
+            /* tslint:disable triple-equals */
             if (value != comparison) {
                 throw new ExpectationFailure("Expected " + value + " to equal " + comparison);
             }
+            /* tslint:enable triple-equals */
         }
     };
 }

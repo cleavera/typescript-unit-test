@@ -1,6 +1,6 @@
+import {IRunnable} from './interfaces/IRunnable.interface';
+import {ISetupFunction} from './interfaces/ISetup.interface';
 import {Test} from './Test';
-import {IRunnable} from "./interfaces/IRunnable.interface";
-import {ISetupFunction} from "./interfaces/ISetup.interface";
 
 export class Suite implements IRunnable {
     public description: string;
@@ -33,6 +33,6 @@ export class Suite implements IRunnable {
 
         this.suites.forEach((suite: Suite) => {
             suite.run(setup);
-        })
+        });
     }
 }

@@ -10,10 +10,11 @@ export function Expect(value: any): IExpectation {
             }
         },
         toEqual(comparison: any): void {
+            /* tslint:disable triple-equals */
             if (value != comparison) {
                 throw new ExpectationFailure(`Expected ${value} to equal ${comparison}`);
             }
+            /* tslint:enable triple-equals */
         }
-    }
+    };
 }
-

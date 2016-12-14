@@ -1,6 +1,6 @@
+import { IRunnable } from './interfaces/IRunnable.interface';
+import { ISetupFunction } from './interfaces/ISetup.interface';
 import { Test } from './Test';
-import { IRunnable } from "./interfaces/IRunnable.interface";
-import { ISetupFunction } from "./interfaces/ISetup.interface";
 export declare class Suite implements IRunnable {
     description: string;
     setup: ISetupFunction[];

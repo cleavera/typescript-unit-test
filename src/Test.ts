@@ -1,5 +1,5 @@
-import {ISetupFunction} from './interfaces/ISetup.interface';
 import {IRunnable} from './interfaces/IRunnable.interface';
+import {ISetupFunction} from './interfaces/ISetup.interface';
 
 export class Test implements IRunnable {
     public description: string;
@@ -17,7 +17,7 @@ export class Test implements IRunnable {
 
         try {
             this.fn();
-        } catch(e) {
+        } catch (e) {
             console.error(e);
         }
     }

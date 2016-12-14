@@ -4,7 +4,7 @@
   "description": "Unit testing framework for typescript",
   "main": "index.js",
   "scripts": {
-    "compile": "tslint -c tslint.json 'src/**/*.ts' && tsc",
+    "compile": "tslint -c tslint.json 'src/**/*.ts' && tsc --noUnusedParameters --noUnusedLocals",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Anthony Cleaver",
