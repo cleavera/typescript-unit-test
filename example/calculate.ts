@@ -1,4 +1,4 @@
-export function calculate(a: number, b: number) {
+export function calculate(a: number, b: number): number {
     if (a > 5) {
         return a + b;
     }
