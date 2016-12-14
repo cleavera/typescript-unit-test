@@ -5,12 +5,13 @@
   "main": "index.js",
   "scripts": {
     "compile": "tslint -c tslint.json 'src/**/*.ts' && tsc",
-    "example": "cd example && ts-node calculate.spec.ts",
+    "example": "node bin --project example/tsconfig.json example/**/*.spec.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Anthony Cleaver",
   "license": "ISC",
   "dependencies": {
+    "glob": "^7.1.1",
     "ts-node": "^1.7.2"
   },
   "devDependencies": {

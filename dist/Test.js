@@ -15,7 +15,7 @@ var Test = (function () {
             this.fn();
         }
         catch (e) {
-            console.error(description.join(' '), e);
+            console.error(description.join(' ') + '\n', e);
         }
     };
     return Test;

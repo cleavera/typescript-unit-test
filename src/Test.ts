@@ -21,7 +21,7 @@ export class Test implements IRunnable {
         try {
             this.fn();
         } catch (e) {
-            console.error(description.join(' '), e);
+            console.error(description.join(' ') + '\n', e);
         }
     }
 }
