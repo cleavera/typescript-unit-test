@@ -11,7 +11,7 @@ var ExpectationFailure = (function (_super) {
     }
     return ExpectationFailure;
 }(Error));
-exports.Expect = function (value) {
+function Expect(value) {
     return {
         toBe: function (comparison) {
             if (value !== comparison) {
@@ -24,4 +24,5 @@ exports.Expect = function (value) {
             }
         }
     };
-};
+}
+exports.Expect = Expect;

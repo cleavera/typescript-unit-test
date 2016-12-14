@@ -4,7 +4,7 @@
   "description": "Unit testing framework for typescript",
   "main": "index.js",
   "scripts": {
-    "compile": "tsc",
+    "compile": "tslint -c tslint.json 'src/**/*.ts' && tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Anthony Cleaver",
@@ -13,6 +13,7 @@
     "ts-node": "^1.7.2"
   },
   "devDependencies": {
+    "tslint": "^4.0.2",
     "typescript": "^2.1.4"
   }
 }

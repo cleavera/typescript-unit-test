@@ -1,4 +1,2 @@
-export declare let Expect: (value: any) => {
-    toBe(comparison: any): void;
-    toEqual(comparison: any): void;
-};
+import { IExpectation } from './interfaces/IExpectation.interface';
+export declare function Expect(value: any): IExpectation;

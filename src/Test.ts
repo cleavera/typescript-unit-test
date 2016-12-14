@@ -2,15 +2,15 @@ import {ISetupFunction} from './interfaces/ISetup.interface';
 import {IRunnable} from './interfaces/IRunnable.interface';
 
 export class Test implements IRunnable {
+    public description: string;
     private fn: () => void;
-    description: string;
 
     constructor(description: string, fn: () => void) {
         this.description = description;
         this.fn = fn;
     }
 
-    run(setup: ISetupFunction[]) {
+    public run(setup: ISetupFunction[]): void {
         setup.forEach((fn: () => void) => {
             fn();
         });

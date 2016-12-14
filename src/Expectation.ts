@@ -1,17 +1,19 @@
+import {IExpectation} from './interfaces/IExpectation.interface';
+
 class ExpectationFailure extends Error {}
 
-export let Expect = function(value: any) {
+export function Expect(value: any): IExpectation {
     return {
-        toBe(comparison: any) {
+        toBe(comparison: any): void {
             if (value !== comparison) {
                 throw new ExpectationFailure(`Expected ${value} to be ${comparison}`);
             }
         },
-        toEqual(comparison: any) {
+        toEqual(comparison: any): void {
             if (value != comparison) {
                 throw new ExpectationFailure(`Expected ${value} to equal ${comparison}`);
             }
         }
     }
-};
+}
 

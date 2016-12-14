@@ -3,28 +3,28 @@ import {IRunnable} from "./interfaces/IRunnable.interface";
 import {ISetupFunction} from "./interfaces/ISetup.interface";
 
 export class Suite implements IRunnable {
-    description: string;
-    setup: ISetupFunction[];
-    suites: Suite[];
-    tests: Test[];
+    public description: string;
+    public setup: ISetupFunction[];
+    public suites: Suite[];
+    public tests: Test[];
 
     constructor(description: string) {
         this.description = description;
     }
 
-    addSetup(setup: () => void): void {
+    public addSetup(setup: () => void): void {
         this.setup.push(setup);
     }
 
-    addSuite(suite: Suite): void {
+    public addSuite(suite: Suite): void {
         this.suites.push(suite);
     }
 
-    addTest(description: string, fn: () => void): void {
+    public addTest(description: string, fn: () => void): void {
         this.tests.push(new Test(description, fn));
     }
 
-    run(setup: ISetupFunction[] = []) {
+    public run(setup: ISetupFunction[] = []): void {
         setup = setup.concat(this.setup);
 
         this.tests.forEach((test: Test) => {
