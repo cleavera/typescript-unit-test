@@ -25,7 +25,7 @@ export class Suite implements IRunnable {
     public addSuite(suite: Suite): Suite {
         this.suites.push(suite);
 
-        return suite;
+        return this;
     }
 
     public addTest(description: string, fn: () => void): Suite {

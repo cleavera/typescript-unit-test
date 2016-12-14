@@ -13,7 +13,7 @@ var Suite = (function () {
     };
     Suite.prototype.addSuite = function (suite) {
         this.suites.push(suite);
-        return suite;
+        return this;
     };
     Suite.prototype.addTest = function (description, fn) {
         this.tests.push(new Test_1.Test(description, fn));
