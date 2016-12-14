@@ -24,7 +24,7 @@ export class Suite implements IRunnable {
         this.tests.push(new Test(description, fn));
     }
 
-    run(setup?: ISetupFunction[] = []) {
+    run(setup: ISetupFunction[] = []) {
         setup = setup.concat(this.setup);
 
         this.tests.forEach((test: Test) => {
