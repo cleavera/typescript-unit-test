@@ -2,7 +2,8 @@
   "name": "typescript-unit-test",
   "version": "1.0.0",
   "description": "Unit testing framework for typescript",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "scripts": {
     "compile": "tslint -c tslint.json 'src/**/*.ts' && tsc",
     "example": "node bin --project example/tsconfig.json example/**/*.spec.ts",
