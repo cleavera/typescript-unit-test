@@ -6,7 +6,7 @@
   "typings": "dist/index.d.ts",
   "scripts": {
     "compile": "tslint -c tslint.json 'src/**/*.ts' && tsc",
-    "example": "node bin --project example/tsconfig.json example/**/*.spec.ts",
+    "example": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Anthony Cleaver",
@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "tslint": "^4.0.2",
-    "typescript": "^2.1.4"
+    "typescript": "^2.1.4",
+    "typescript-unit-test-runner": "git+https://github.com/cleavera/typescript-unit-test-runner.git"
   }
 }
