@@ -3,7 +3,7 @@ import {IExpectation} from './interfaces/IExpectation.interface';
 import {InvalidArgument} from './InvalidArgument.error';
 
 export function Expect(value: any): IExpectation {
-    return {
+    let api: IExpectation = {
         toBe(comparison: any): void {
             if (value !== comparison) {
                 throw new ExpectationFailure(`Expected ${value} to be ${comparison}`);
@@ -55,4 +55,53 @@ export function Expect(value: any): IExpectation {
             }
         }
     };
+
+    api.not = {
+        toBe(comparison: any): void {
+            try {
+                api.toBe(comparison);
+                /* tslint:disable typedef */
+            } catch (e) {
+                /* tslint:enable typedef */
+                return;
+            }
+
+            throw new ExpectationFailure(`Expected ${value} not to be ${comparison}`);
+        },
+        toEqual(comparison: any): void {
+            try {
+                api.toEqual(comparison);
+                /* tslint:disable typedef */
+            } catch (e) {
+                /* tslint:enable typedef */
+                return;
+            }
+
+            throw new ExpectationFailure(`Expected ${value} not to equal ${comparison}`);
+        },
+        toHaveBeenCalled(): void {
+            try {
+                api.toHaveBeenCalled();
+                /* tslint:disable typedef */
+            } catch (e) {
+                /* tslint:enable typedef */
+                return;
+            }
+
+            throw new ExpectationFailure(`Expected ${value} not to have been called`);
+        },
+        toHaveBeenCalledWith(...args: any[]): void {
+            try {
+                api.toHaveBeenCalledWith(...args);
+                /* tslint:disable typedef */
+            } catch (e) {
+                /* tslint:enable typedef */
+                return;
+            }
+
+            throw new ExpectationFailure(`Expected ${value} not to have been called with ${args}`);
+        }
+    };
+
+    return api;
 }

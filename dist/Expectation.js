@@ -2,7 +2,7 @@
 var ExpectationFailure_error_1 = require("./ExpectationFailure.error");
 var InvalidArgument_error_1 = require("./InvalidArgument.error");
 function Expect(value) {
-    return {
+    var api = {
         toBe: function (comparison) {
             if (value !== comparison) {
                 throw new ExpectationFailure_error_1.ExpectationFailure("Expected " + value + " to be " + comparison);
@@ -52,5 +52,52 @@ function Expect(value) {
             }
         }
     };
+    api.not = {
+        toBe: function (comparison) {
+            try {
+                api.toBe(comparison);
+            }
+            catch (e) {
+                /* tslint:enable typedef */
+                return;
+            }
+            throw new ExpectationFailure_error_1.ExpectationFailure("Expected " + value + " not to be " + comparison);
+        },
+        toEqual: function (comparison) {
+            try {
+                api.toEqual(comparison);
+            }
+            catch (e) {
+                /* tslint:enable typedef */
+                return;
+            }
+            throw new ExpectationFailure_error_1.ExpectationFailure("Expected " + value + " not to equal " + comparison);
+        },
+        toHaveBeenCalled: function () {
+            try {
+                api.toHaveBeenCalled();
+            }
+            catch (e) {
+                /* tslint:enable typedef */
+                return;
+            }
+            throw new ExpectationFailure_error_1.ExpectationFailure("Expected " + value + " not to have been called");
+        },
+        toHaveBeenCalledWith: function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            try {
+                api.toHaveBeenCalledWith.apply(api, args);
+            }
+            catch (e) {
+                /* tslint:enable typedef */
+                return;
+            }
+            throw new ExpectationFailure_error_1.ExpectationFailure("Expected " + value + " not to have been called with " + args);
+        }
+    };
+    return api;
 }
 exports.Expect = Expect;

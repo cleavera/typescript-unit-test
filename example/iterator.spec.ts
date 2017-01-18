@@ -18,11 +18,11 @@ testSuite.addTest('it should call the callback with an incrementing number', () 
     Expect(cb).toHaveBeenCalledWith(1);
     Expect(cb).toHaveBeenCalledWith(2);
     Expect(cb).toHaveBeenCalledWith(3);
-    Expect(cb).toHaveBeenCalledWith(4);
+    Expect(cb).not.toHaveBeenCalledWith(4);
 });
 
 testSuite.addTest('it should not call the unused callback', () => {
-    Expect(cb2).toHaveBeenCalled();
+    Expect(cb2).not.toHaveBeenCalled();
 });
 
 testSuite.addTest('it should call the callback once per call', () => {
