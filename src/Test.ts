@@ -20,7 +20,9 @@ export class Test implements IRunnable {
 
         try {
             this.fn();
+            /* tslint:disable typedef */
         } catch (e) {
+            /* tslint:enable typdef */
             console.error(description.join(' ') + '\n', e);
         }
     }

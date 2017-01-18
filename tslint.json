@@ -8,7 +8,7 @@
       }
     ],
     "no-any": false,
-    "no-inferrable-types": true,
+    "no-inferrable-types": false,
     "no-internal-module": true,
     "no-namespace": true,
     "no-reference": true,
@@ -81,7 +81,7 @@
     "linebreak-style": [true, "CRLF"],
     "max-classes-per-file": [true, 1],
     "max-file-line-count": [true, 300],
-    "max-line-length": [true, 120],
+    "max-line-length": [false, 120],
     "no-default-export": true,
     "no-mergeable-namespace": true,
     "no-require-imports": true,

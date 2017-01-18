@@ -15,6 +15,7 @@ var Test = (function () {
             this.fn();
         }
         catch (e) {
+            /* tslint:enable typdef */
             console.error(description.join(' ') + '\n', e);
         }
     };

@@ -1,3 +1,4 @@
 import { Expect } from './Expectation';
+import { Spy } from './Spy';
 import { Suite } from './Suite';
-export { Expect, Suite };
+export { Spy, Expect, Suite };
