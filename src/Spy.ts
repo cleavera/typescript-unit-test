@@ -73,3 +73,13 @@ export function Spy(label: string): ISpy {
 
     return spy;
 }
+
+export function SpyObject(label: string, methods: string[]): {[key: string]: ISpy} {
+    let out: {[key: string]: ISpy} = {};
+
+    methods.forEach((method: string) => {
+        out[method] = Spy(`${label}.${method}`);
+    });
+
+    return out;
+}

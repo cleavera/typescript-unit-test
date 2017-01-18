@@ -62,3 +62,11 @@ function Spy(label) {
     return spy;
 }
 exports.Spy = Spy;
+function SpyObject(label, methods) {
+    var out = {};
+    methods.forEach(function (method) {
+        out[method] = Spy(label + "." + method);
+    });
+    return out;
+}
+exports.SpyObject = SpyObject;
