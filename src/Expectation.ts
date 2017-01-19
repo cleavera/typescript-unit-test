@@ -9,6 +9,16 @@ export function Expect(value: any): IExpectation {
                 throw new ExpectationFailure(`Expected ${value} to be ${comparison}`);
             }
         },
+        toBeTruthy(): void {
+            if (!value) {
+                throw new ExpectationFailure(`Expected ${value} to be truthy`);
+            }
+        },
+        toBeFalsy(): void {
+            if (!!value) {
+                throw new ExpectationFailure(`Expected ${value} to be falsy`);
+            }
+        },
         toEqual(comparison: any): void {
             /* tslint:disable triple-equals */
             if (value != comparison) {
@@ -67,6 +77,28 @@ export function Expect(value: any): IExpectation {
             }
 
             throw new ExpectationFailure(`Expected ${value} not to be ${comparison}`);
+        },
+        toBeTruthy(): void {
+            try {
+                api.toBeTruthy();
+                /* tslint:disable typedef */
+            } catch (e) {
+                /* tslint:enable typedef */
+                return;
+            }
+
+            throw new ExpectationFailure(`Expected ${value} not to be truthy`);
+        },
+        toBeFalsy(): void {
+            try {
+                api.toBeFalsy();
+                /* tslint:disable typedef */
+            } catch (e) {
+                /* tslint:enable typedef */
+                return;
+            }
+
+            throw new ExpectationFailure(`Expected ${value} not to be falsy`);
         },
         toEqual(comparison: any): void {
             try {

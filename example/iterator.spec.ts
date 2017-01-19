@@ -21,6 +21,11 @@ testSuite.addTest('it should call the callback with an incrementing number', () 
     Expect(cb).not.toHaveBeenCalledWith(4);
 });
 
+testSuite.addTest('it should exist', () => {
+    Expect(iterator).toBeTruthy();
+    Expect(iterator).not.toBeFalsy();
+});
+
 testSuite.addTest('it should not call the unused callback', () => {
     Expect(cb2).not.toHaveBeenCalled();
 });

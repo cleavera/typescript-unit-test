@@ -8,6 +8,16 @@ function Expect(value) {
                 throw new ExpectationFailure_error_1.ExpectationFailure("Expected " + value + " to be " + comparison);
             }
         },
+        toBeTruthy: function () {
+            if (!value) {
+                throw new ExpectationFailure_error_1.ExpectationFailure("Expected " + value + " to be truthy");
+            }
+        },
+        toBeFalsy: function () {
+            if (!!value) {
+                throw new ExpectationFailure_error_1.ExpectationFailure("Expected " + value + " to be falsy");
+            }
+        },
         toEqual: function (comparison) {
             /* tslint:disable triple-equals */
             if (value != comparison) {
@@ -62,6 +72,26 @@ function Expect(value) {
                 return;
             }
             throw new ExpectationFailure_error_1.ExpectationFailure("Expected " + value + " not to be " + comparison);
+        },
+        toBeTruthy: function () {
+            try {
+                api.toBeTruthy();
+            }
+            catch (e) {
+                /* tslint:enable typedef */
+                return;
+            }
+            throw new ExpectationFailure_error_1.ExpectationFailure("Expected " + value + " not to be truthy");
+        },
+        toBeFalsy: function () {
+            try {
+                api.toBeFalsy();
+            }
+            catch (e) {
+                /* tslint:enable typedef */
+                return;
+            }
+            throw new ExpectationFailure_error_1.ExpectationFailure("Expected " + value + " not to be falsy");
         },
         toEqual: function (comparison) {
             try {
