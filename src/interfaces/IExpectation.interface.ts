@@ -4,6 +4,7 @@ export interface IExpectation {
     toBeTruthy(): void;
     toBeFalsy(): void;
     toEqual(comparison: any): void;
+    toThrow(): void;
     toHaveBeenCalled(): void;
     toHaveBeenCalledWith(...args: any[]): void;
 }

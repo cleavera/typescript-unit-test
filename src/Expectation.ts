@@ -26,6 +26,17 @@ export function Expect(value: any): IExpectation {
             }
             /* tslint:enable triple-equals */
         },
+        toThrow(): void {
+            try {
+                value();
+                /* tslint:disable typedef */
+            } catch (e) {
+                /* tslint:enable typedef */
+                return;
+            }
+
+            throw new ExpectationFailure(`Expected ${value} to throw an error`);
+        },
         toHaveBeenCalled(): void {
             if (!('calls' in value)) {
                 throw new InvalidArgument(`Expected ${value} to be a spy`);
@@ -111,6 +122,15 @@ export function Expect(value: any): IExpectation {
 
             throw new ExpectationFailure(`Expected ${value} not to equal ${comparison}`);
         },
+        toThrow(): void {
+            try {
+                value();
+                /* tslint:disable typedef */
+            } catch (e) {
+                /* tslint:enable typedef */
+                throw new ExpectationFailure(`Expected ${value} not to throw an error but it threw ${e}`);
+            }
+        },
         toHaveBeenCalled(): void {
             try {
                 api.toHaveBeenCalled();
@@ -120,7 +140,7 @@ export function Expect(value: any): IExpectation {
                 return;
             }
 
-            throw new ExpectationFailure(`Expected ${value} not to have been called`);
+            throw new ExpectationFailure(`Expected ${value} not to have been called but it was called with ${JSON.stringify(value.calls)}`);
         },
         toHaveBeenCalledWith(...args: any[]): void {
             try {

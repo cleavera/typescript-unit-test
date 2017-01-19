@@ -34,4 +34,12 @@ testSuite.addTest('it should call the callback once per call', () => {
     Expect(cb.calls.length).toBe(3);
 });
 
+testSuite.addTest('it should not catch errors in the callback', () => {
+    Expect(() => {
+        iterator(() => {
+            throw new Error();
+        });
+    }).toThrow();
+});
+
 testSuite.run();

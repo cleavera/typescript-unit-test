@@ -25,6 +25,16 @@ function Expect(value) {
             }
             /* tslint:enable triple-equals */
         },
+        toThrow: function () {
+            try {
+                value();
+            }
+            catch (e) {
+                /* tslint:enable typedef */
+                return;
+            }
+            throw new ExpectationFailure_error_1.ExpectationFailure("Expected " + value + " to throw an error");
+        },
         toHaveBeenCalled: function () {
             if (!('calls' in value)) {
                 throw new InvalidArgument_error_1.InvalidArgument("Expected " + value + " to be a spy");
@@ -103,6 +113,15 @@ function Expect(value) {
             }
             throw new ExpectationFailure_error_1.ExpectationFailure("Expected " + value + " not to equal " + comparison);
         },
+        toThrow: function () {
+            try {
+                value();
+            }
+            catch (e) {
+                /* tslint:enable typedef */
+                throw new ExpectationFailure_error_1.ExpectationFailure("Expected " + value + " not to throw an error but it threw " + e);
+            }
+        },
         toHaveBeenCalled: function () {
             try {
                 api.toHaveBeenCalled();
@@ -111,7 +130,7 @@ function Expect(value) {
                 /* tslint:enable typedef */
                 return;
             }
-            throw new ExpectationFailure_error_1.ExpectationFailure("Expected " + value + " not to have been called");
+            throw new ExpectationFailure_error_1.ExpectationFailure("Expected " + value + " not to have been called but it was called with " + JSON.stringify(value.calls));
         },
         toHaveBeenCalledWith: function () {
             var args = [];
