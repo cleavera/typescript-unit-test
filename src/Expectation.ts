@@ -87,7 +87,7 @@ export function Expect(value: any): IExpectation {
 
                     args.forEach((arg: any, index: number) => {
                         /* tslint:disable triple-equals */
-                        if (arg != call[index]) {
+                        if (!equivalance(arg, call[index])) {
                             /* tslint:enable triple-equal */
                             success = false;
                         }
