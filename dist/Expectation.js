@@ -1,6 +1,26 @@
 "use strict";
 var ExpectationFailure_error_1 = require("./ExpectationFailure.error");
 var InvalidArgument_error_1 = require("./InvalidArgument.error");
+function isObjectLike(item) {
+    return Object.prototype.toString.apply(item) === '[object Object]';
+}
+function equivalance(value, comparison) {
+    if (value === comparison) {
+        return true;
+    }
+    if (isObjectLike(value) && isObjectLike(comparison)) {
+        var props = Object.keys(value);
+        for (var prop in props) {
+            if (!equivalance(value[prop], comparison[prop])) {
+                return false;
+            }
+        }
+        return true;
+    }
+    /* tslint:disable triple-equals */
+    return value != comparison;
+    /* tslint:enable triple-equals */
+}
 function Expect(value) {
     var api = {
         toBe: function (comparison) {
@@ -19,11 +39,9 @@ function Expect(value) {
             }
         },
         toEqual: function (comparison) {
-            /* tslint:disable triple-equals */
-            if (value != comparison) {
+            if (!equivalance(value, comparison)) {
                 throw new ExpectationFailure_error_1.ExpectationFailure("Expected " + value + " to equal " + comparison);
             }
-            /* tslint:enable triple-equals */
         },
         toThrow: function () {
             try {

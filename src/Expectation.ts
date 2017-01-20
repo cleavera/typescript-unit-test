@@ -2,6 +2,32 @@ import {ExpectationFailure} from './ExpectationFailure.error';
 import {IExpectation} from './interfaces/IExpectation.interface';
 import {InvalidArgument} from './InvalidArgument.error';
 
+function isObjectLike(item: any): boolean {
+    return Object.prototype.toString.apply(item) === '[object Object]';
+}
+
+function equivalance(value: any, comparison: any): boolean {
+    if (value === comparison) {
+        return true;
+    }
+
+    if (isObjectLike(value) && isObjectLike(comparison)) {
+        let props: string[] = Object.keys(value);
+
+        for (let prop in props) {
+            if (!equivalance(value[prop], comparison[prop])) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /* tslint:disable triple-equals */
+    return value != comparison;
+    /* tslint:enable triple-equals */
+}
+
 export function Expect(value: any): IExpectation {
     let api: IExpectation = {
         toBe(comparison: any): void {
@@ -20,11 +46,9 @@ export function Expect(value: any): IExpectation {
             }
         },
         toEqual(comparison: any): void {
-            /* tslint:disable triple-equals */
-            if (value != comparison) {
+            if (!equivalance(value, comparison)) {
                 throw new ExpectationFailure(`Expected ${value} to equal ${comparison}`);
             }
-            /* tslint:enable triple-equals */
         },
         toThrow(): void {
             try {
