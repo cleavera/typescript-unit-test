@@ -18,7 +18,7 @@ function equivalance(value, comparison) {
         return true;
     }
     /* tslint:disable triple-equals */
-    return value != comparison;
+    return value == comparison;
     /* tslint:enable triple-equals */
 }
 function Expect(value) {
@@ -78,7 +78,7 @@ function Expect(value) {
                     success = true;
                     args.forEach(function (arg, index) {
                         /* tslint:disable triple-equals */
-                        if (arg != call[index]) {
+                        if (!equivalance(arg, call[index])) {
                             /* tslint:enable triple-equal */
                             success = false;
                         }
@@ -86,7 +86,7 @@ function Expect(value) {
                 }
             });
             if (!success) {
-                throw new ExpectationFailure_error_1.ExpectationFailure("Expected " + value + " to have been called with " + args + " but it was instead called with " + JSON.stringify(value.calls));
+                throw new ExpectationFailure_error_1.ExpectationFailure("Expected " + value + " to have been called with " + JSON.stringify(args) + " but it was instead called with " + JSON.stringify(value.calls));
             }
         }
     };
@@ -162,7 +162,7 @@ function Expect(value) {
                 /* tslint:enable typedef */
                 return;
             }
-            throw new ExpectationFailure_error_1.ExpectationFailure("Expected " + value + " not to have been called with " + args);
+            throw new ExpectationFailure_error_1.ExpectationFailure("Expected " + value + " not to have been called with " + JSON.stringify(args) + ", it was called with " + JSON.stringify(value.calls));
         }
     };
     return api;

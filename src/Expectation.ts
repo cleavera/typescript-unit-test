@@ -24,7 +24,7 @@ function equivalance(value: any, comparison: any): boolean {
     }
 
     /* tslint:disable triple-equals */
-    return value != comparison;
+    return value == comparison;
     /* tslint:enable triple-equals */
 }
 
@@ -96,7 +96,7 @@ export function Expect(value: any): IExpectation {
             });
 
             if (!success) {
-                throw new ExpectationFailure(`Expected ${value} to have been called with ${args} but it was instead called with ${JSON.stringify(value.calls)}`);
+                throw new ExpectationFailure(`Expected ${value} to have been called with ${JSON.stringify(args)} but it was instead called with ${JSON.stringify(value.calls)}`);
             }
         }
     };
@@ -175,7 +175,7 @@ export function Expect(value: any): IExpectation {
                 return;
             }
 
-            throw new ExpectationFailure(`Expected ${value} not to have been called with ${args}`);
+            throw new ExpectationFailure(`Expected ${value} not to have been called with ${JSON.stringify(args)}, it was called with ${JSON.stringify(value.calls)}`);
         }
     };
 
